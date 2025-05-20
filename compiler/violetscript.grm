@@ -1,0 +1,122 @@
+"Name"     = 'VioletScript'
+"Author"   = 'Zeyad Lotfy'
+"Version"  = '1.0'
+"About"    = 'An elegant, modern programming language with a purple theme'
+
+"Case Sensitive" = True
+"Start Symbol"   = <Program>
+
+! ------------------- Terminals -------------------
+
+! Define whitespace explicitly
+{WS}        = {Whitespace} - {CR} - {LF}
+{EOL}       = {CR}{LF} | {CR} | {LF}
+
+! Terminal definitions
+ID          = {Letter}{AlphaNumeric}*
+StringLit   = '"'{Printable - '"'}*'"'
+NumberLit   = {Digit}+('.'{Digit}+)?
+Comment     = '#'({Printable}-{CR}-{LF})*{EOL}?
+
+! Add whitespace rule to ignore spaces and comments
+{Whitespace Rule} = {WS}+ | {EOL}+ | {Comment}
+
+! ------------------- Keywords -------------------
+var       = 'var'
+check     = 'check'
+otherwise = 'otherwise'
+orcheck   = 'orcheck'
+begin     = 'begin'
+end       = 'end'
+repeat    = 'repeat'
+times     = 'times'
+loop      = 'loop'
+when      = 'when'
+foreach   = 'foreach'
+in        = 'in'
+display   = 'display'
+true      = 'true'
+false     = 'false'
+
+! ------------------- Operators -------------------
+Arrow        = '->'
+Plus         = '+'
+Minus        = '-'
+Multiply     = '*'
+Divide       = '/'
+Equals       = '=='
+NotEquals    = '!='
+LessThan     = '<'
+GreaterThan  = '>'
+LessEqual    = '<='
+GreaterEqual = '>='
+
+! ------------------- Rules -------------------
+
+<Program>        ::= <StatementList>
+                   |
+
+<StatementList>  ::= <Statement> <StatementList>
+                   | <Statement>
+
+<Statement>      ::= <Declaration>
+                   | <Assignment>
+                   | <IfStatement>
+                   | <LoopStatement>
+                   | <PrintStatement>
+
+<Declaration>    ::= var <Identifier> Arrow <Expression>
+
+<Assignment>     ::= <Identifier> Arrow <Expression>
+
+<IfStatement>    ::= check <Condition> begin <StatementList> end
+                   | check <Condition> begin <StatementList> end otherwise begin <StatementList> end
+                   | check <Condition> begin <StatementList> end <ElseIfList> otherwise begin <StatementList> end
+
+<ElseIfList>     ::= <ElseIf> <ElseIfList>
+                   | <ElseIf>
+
+<ElseIf>         ::= orcheck <Condition> begin <StatementList> end
+
+<LoopStatement>  ::= <RepeatLoop>
+                   | <WhileLoop>
+                   | <ForEachLoop>
+
+<RepeatLoop>     ::= repeat <Expression> times begin <StatementList> end
+
+<WhileLoop>      ::= loop when <Condition> begin <StatementList> end
+
+<ForEachLoop>    ::= foreach <Identifier> in <Expression> begin <StatementList> end
+
+<PrintStatement> ::= display <Expression>
+
+<Condition>      ::= <Expression> <ComparisonOp> <Expression>
+                   | <Expression>
+
+<ComparisonOp>   ::= Equals
+                   | NotEquals
+                   | LessThan
+                   | GreaterThan
+                   | LessEqual
+                   | GreaterEqual
+
+<Expression>     ::= <Term> Plus <Expression>
+                   | <Term> Minus <Expression>
+                   | <Term>
+
+<Term>           ::= <Factor> Multiply <Term>
+                   | <Factor> Divide <Term>
+                   | <Factor>
+
+<Factor>         ::= <Identifier>
+                   | <Number>
+                   | <String>
+                   | <Boolean>
+                   | Minus <Factor>
+                   | LParen <Expression> RParen
+
+<Identifier>     ::= ID
+<Number>         ::= NumberLit
+<String>         ::= StringLit
+<Boolean>        ::= true
+                   | false

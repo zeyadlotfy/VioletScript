@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VioletScript | Modern Programming Language</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="VioletScript - An elegant, modern programming language with simplicity at its core">
+</head>
+<body>
+    <div class="animation-background">
+        <div class="floating-particle p1"></div>
+        <div class="floating-particle p2"></div>
+        <div class="floating-particle p3"></div>
+        <div class="floating-particle p4"></div>
+        <div class="floating-particle p5"></div>
+        <div class="floating-particle p6"></div>
+        <div class="floating-particle p7"></div>
+        <div class="floating-particle p8"></div>
+    </div>
+
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="violet-logo-container">
+                <div class="violet-logo"></div>
+                <div class="logo-glow"></div>
+            </div>
+            <h1>VioletScript IDE <span class="version-badge">1.0</span></h1>
+            <p>Simple. Elegant. <span class="typing-text">Powerful.</span></p>
+            
+            <div class="header-decoration">
+                <div class="decoration-line"></div>
+                <div class="decoration-dot"></div>
+                <div class="decoration-line"></div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="editor-panel">
+                <div class="panel-title">
+                    <i class="fas fa-code"></i>
+                    <h2>Code Editor</h2>
+                </div>
+                <textarea id="codeInput" placeholder="Write your VioletScript code here..."></textarea>
+                <div class="button-group">
+                    <button id="analyzeBtn"><i class="fas fa-play"></i> Run</button>
+                    <button id="loadSampleBtn"><i class="fas fa-file-code"></i> Example</button>
+                    <button id="clearBtn"><i class="fas fa-eraser"></i> Clear</button>
+                </div>
+            </div>
+
+            <div class="results-panel">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="lexical"><i class="fas fa-list-ul"></i> Tokens</button>
+                    <button class="tab-btn" data-tab="syntax"><i class="fas fa-sitemap"></i> AST</button>
+                    <button class="tab-btn" data-tab="errors"><i class="fas fa-exclamation-triangle"></i> Errors</button>
+                    <button class="tab-btn" data-tab="grammar"><i class="fas fa-book"></i> Grammar</button>
+                    <div class="tab-slider"></div>
+                </div>
+
+                <div id="loading" class="loading-container" style="display: none;">
+                    <div class="loading">
+                        <div class="loading-circle"></div>
+                        <div class="loading-circle"></div>
+                    </div>
+                    <p>Processing...</p>
+                </div>
+
+                <div class="tab-content active" id="lexical-tab">
+                    <div class="panel-title">
+                        <i class="fas fa-list-ul"></i>
+                        <h3>Token Analysis</h3>
+                    </div>
+                    <div id="lexicalOutput" class="output-box"></div>
+                </div>
+                
+                <div class="tab-content" id="syntax-tab">
+                    <div class="panel-title">
+                        <i class="fas fa-sitemap"></i>
+                        <h3>Abstract Syntax Tree</h3>
+                    </div>
+                    <div id="syntaxOutput" class="output-box"></div>
+                </div>
+                
+                <div class="tab-content" id="errors-tab">
+                    <div class="panel-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Messages</h3>
+                    </div>
+                    <div id="errorOutput" class="output-box error"></div>
+                </div>
+
+                <div class="tab-content" id="grammar-tab">
+                    <div class="panel-title">
+                        <i class="fas fa-book"></i>
+                        <h3>VioletScript Grammar</h3>
+                    </div>
+                    <div id="grammarOutput" class="output-box"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><i class="fas fa-code"></i> VioletScript - An elegant programming language &copy; 2025</p>
+            <p class="author-credit">Made by <a href="https://zeyadlotfy.vercel.app/" target="_blank" rel="noopener noreferrer">Zeyad Lotfy</a> <i class="fas fa-external-link-alt"></i></p>
+            <div class="animation-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="../compiler/lexer.js"></script>
+    <script src="../compiler/parser.js"></script>
+    <script src="../compiler/grammarLoader.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
