@@ -120,4 +120,4 @@ This project is deployed on Vercel and can be accessed at:
 
 ## Contributors
 
-- [Zeyad Lotfy](https://violetscript.vercel.app)
+- [Zeyad Lotfy](https://zeyadlotfy.vercel.app/)
